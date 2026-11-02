@@ -36,6 +36,32 @@ the host. Containers run as the calling user (`-u $(id -u):$(id -g)`), so output
 > the Docker daemon can see. Do not put it under a per-user private `/tmp` (as some systems use); tasks would fail
 > with `.command.sh: No such file or directory`.
 
+### Install Nextflow
+
+Skip this if `nextflow -version` already reports ≥ 25.10 and `java -version` reports 17 or newer.
+
+```bash
+# 1. Java 17+ (pick one)
+sudo apt install openjdk-17-jre-headless      # Debian/Ubuntu
+conda install -c conda-forge openjdk=17       # or via conda, no root needed
+
+# 2. Nextflow
+curl -s https://get.nextflow.io | bash        # downloads a `nextflow` launcher into the current directory
+chmod +x nextflow
+mv nextflow ~/.local/bin/                     # any directory on your $PATH
+
+# 3. Check
+nextflow -version
+```
+
+Without root, `conda install -c bioconda nextflow` also works, but check that the installed version is ≥ 25.10
+(`nextflow -version`); the bioconda package can lag behind. To pin a version with the launcher:
+`NXF_VER=25.10.0 nextflow -version`.
+
+Docker must be installed separately, see the [Docker install guide](https://docs.docker.com/engine/install/). Then add
+yourself to the `docker` group (`sudo usermod -aG docker $USER`, log out and back in) and check that
+`docker run --rm hello-world` works without `sudo`.
+
 ## 2. Build the images (once)
 
 ```bash
