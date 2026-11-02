@@ -1,0 +1,29 @@
+FROM condaforge/mambaforge:23.11.0-0
+
+RUN mamba install -y -c conda-forge \
+        numpy matplotlib seaborn colormap scipy tqdm pandas && \
+    mamba clean -afy
+
+RUN mkdir -p /opt/lpad/pyrwr /opt/lpad/utils && \
+    wget -q -O /opt/lpad/PLA_2.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/PLA_2.py" && \
+    wget -q -O /opt/lpad/pyrwr/__init__.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/pyrwr/__init__.py" && \
+    wget -q -O /opt/lpad/pyrwr/__main__.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/pyrwr/__main__.py" && \
+    wget -q -O /opt/lpad/pyrwr/pyrwr.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/pyrwr/pyrwr.py" && \
+    wget -q -O /opt/lpad/pyrwr/rwr.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/pyrwr/rwr.py" && \
+    wget -q -O /opt/lpad/pyrwr/ppr.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/pyrwr/ppr.py" && \
+    wget -q -O /opt/lpad/pyrwr/pagerank.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/pyrwr/pagerank.py" && \
+    wget -q -O /opt/lpad/utils/__init__.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/utils/__init__.py" && \
+    wget -q -O /opt/lpad/utils/iterator.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/utils/iterator.py" && \
+    wget -q -O /opt/lpad/utils/normalizer.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/utils/normalizer.py" && \
+    wget -q -O /opt/lpad/utils/reader.py \
+        "https://raw.githubusercontent.com/lyotvincent/LPAD/main/utils/reader.py"

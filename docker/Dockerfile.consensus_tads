@@ -1,0 +1,6 @@
+FROM rocker/tidyverse:4.5.3
+
+RUN R -e "install.packages('BiocManager', repos='https://cloud.r-project.org')" \
+ && R -e "BiocManager::install(c('GenomicRanges','IRanges'), ask=FALSE, update=FALSE)" \
+ && R -e "install.packages(c('future','furrr', 'remotes'), repos='https://cloud.r-project.org')"
+RUN R -e "devtools::install_github('CSOgroup/consensusTADs', build_vignettes = TRUE)"

@@ -1,0 +1,12 @@
+FROM condaforge/mambaforge:23.11.0-0
+
+RUN mamba install -y -c conda-forge -c bioconda \
+        cooler \
+        hictk \
+        openjdk \
+        hic-straw \
+        wget && \
+    mamba clean -afy
+
+RUN wget -q -O /juicer_tools.jar \
+      "https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tools.2.20.00.jar"

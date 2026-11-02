@@ -1,0 +1,2 @@
+FROM bioconductor/bioconductor_docker:RELEASE_3_18
+RUN R -e "BiocManager::install('SpectralTAD', ask = FALSE, update = FALSE)"

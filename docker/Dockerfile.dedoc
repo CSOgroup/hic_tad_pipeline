@@ -1,0 +1,11 @@
+FROM eclipse-temurin:11-jre-jammy
+
+RUN apt-get update && apt-get install -y software-properties-common wget && \
+    add-apt-repository multiverse && \
+    apt-get update && apt-get install -y unrar && \
+    mkdir -p /opt/dedoc && \
+    wget -q -O /tmp/deDoc.rar \
+      "https://github.com/yinxc/structural-information-minimisation/raw/refs/heads/master/deDoc.rar" && \
+    unrar x /tmp/deDoc.rar /tmp/dedoc_extract/ && \
+    find /tmp/dedoc_extract -name "*.jar" -exec cp {} /opt/dedoc/ \; && \
+    rm -rf /tmp/deDoc.rar /tmp/dedoc_extract /var/lib/apt/lists/*

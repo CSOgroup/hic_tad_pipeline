@@ -1,0 +1,5 @@
+FROM condaforge/mambaforge:23.11.0-0
+RUN mamba install -y -c conda-forge \
+        pip numpy pandas matplotlib seaborn colormap && \
+    mamba clean -afy && \
+    pip install --no-cache-dir git+https://github.com/zhanglabtools/MSTD.git

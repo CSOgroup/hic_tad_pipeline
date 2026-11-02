@@ -1,0 +1,6 @@
+FROM ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y wget libcurl4 && \
+    wget -q https://raw.githubusercontent.com/anlin00007/OnTAD/master/OnTAD -O /usr/local/bin/OnTAD && \
+    chmod +x /usr/local/bin/OnTAD && \
+    rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,5 @@
+FROM eclipse-temurin:17-jre-jammy
+RUN apt-get update && apt-get install -y wget && \
+    wget -q -O /juicer_tools.jar \
+      "https://github.com/aidenlab/Juicebox/releases/download/v2.20.00/juicer_tools.2.20.00.jar" && \
+    rm -rf /var/lib/apt/lists/*
